@@ -21,7 +21,13 @@ const bannerImg = document.querySelector('.banner-img');
 const tagLine = document.querySelector('p');
 const leftArrow = document.querySelector('.arrow_left');
 const rightArrow = document.querySelector('.arrow_right');
+const dotsContainer = document.querySelector('.dots');
 
+slides.forEach((slide, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    dotsContainer.appendChild(dot);
+});
 
 leftArrow.addEventListener('click', function () {
     currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
@@ -37,6 +43,20 @@ function updateSlide() {
     const slide = slides[currentSlideIndex];
     bannerImg.src = './assets/images/slideshow/' + slide.image;
     tagLine.innerHTML = slide.tagLine;
+
+
+	const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        if (index === currentSlideIndex) {
+            dot.classList.add('dot_selected');
+        } else {
+            dot.classList.remove('dot_selected');
+        }
+    });
 }
 
+
 updateSlide();
+
+
+
